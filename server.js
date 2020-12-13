@@ -137,7 +137,7 @@ app.get('/test',
       console.log(consolidatedTweets);
 
 
-      var result="The most popular url(domain) on your timeline is :"+utils.showMax(domains);
+      var result="<a href='/logout'>logout</a><br>The most popular url(domain) on your timeline is :"+utils.showMax(domains);
       result+="<br> The user that posts the most is :"+ utils.showMax(users);
       result+="<br> The tweets are :\n"+ consolidatedTweets;
       // console.log(data.map(utils.extractUrl).filter(a=>a.length>0));
