@@ -100,6 +100,14 @@ app.get('/test',
     // res.render("asd");
     T.get('statuses/home_timeline', {}, function (err, data, response) {
       // console.log(data)
+      var date7DaysAgo = utils.dateNDaysAgo(7);
+      // console.log(data.map(e=>e.text));
+
+      data = data.filter((elem) => {
+        var tweetDate = new Date(elem["created_at"]);
+        return tweetDate > date7DaysAgo;
+      })
+      // console.log(data.map(e=>e.text));
       var tweets = data.filter(utils.containsUrl).map(utils.extractTweetInfo);
 
       var users = tweets.map(utils.extractUser)
@@ -108,7 +116,7 @@ app.get('/test',
       //     return accumulator[user] = (accumulator[user] ? accumulator[user] : 0) + 1;
       //   }
       //   , {});
-      
+
       var domains = data.map(utils.extractUrl)
         .filter(a => a.length > 0)
         .reduce(
@@ -117,18 +125,18 @@ app.get('/test',
           }
           , [])
         .map(utils.extractDomain)
-        // .reduce(
-        //   function (accumulator, user) {
-        //     return accumulator[user] = (accumulator[user]==undefined ? 0:accumulator[user]) + 1;
-        //   }
-        //   , {});
-      
+      // .reduce(
+      //   function (accumulator, user) {
+      //     return accumulator[user] = (accumulator[user]==undefined ? 0:accumulator[user]) + 1;
+      //   }
+      //   , {});
 
-      var consolidatedTweets="";
+
+      var consolidatedTweets = "";
       tweets.forEach(element => {
-       
-        consolidatedTweets+=utils.formatTweet(element); 
-  
+
+        consolidatedTweets += utils.formatTweet(element);
+
       });
       // ((acc,tweet)=>{
       //   acc+=utils.formatTweet(tweet);
@@ -137,14 +145,14 @@ app.get('/test',
       console.log(consolidatedTweets);
 
 
-      var result="<a href='/logout'>logout</a><br>The most popular url(domain) on your timeline is :"+utils.showMax(domains);
-      result+="<br> The user that posts the most is :"+ utils.showMax(users);
-      result+="<br> The tweets are :\n"+ consolidatedTweets;
+      var result = "<a href='/logout'>logout</a><br>The most popular url(domain) on your timeline is :" + utils.showMax(domains);
+      result += "<br> The user that posts the most is :" + utils.showMax(users);
+      result += "<br> The tweets are :\n" + consolidatedTweets;
       // console.log(data.map(utils.extractUrl).filter(a=>a.length>0));
       // res.send(utils.showMax(domains));
       // res.send(data);
       res.send(result);
-      
+
     });
   });
 
@@ -155,4 +163,4 @@ app.get('/logout',
     });
   });
 
-app.listen(process.env.PORT||8980);
+app.listen(process.env.PORT || 8980);

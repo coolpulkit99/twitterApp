@@ -47,10 +47,16 @@ module.exports = {
         }
         return max;
     },
-    formatTweet:function(tweet){
-        var tweetText=tweet["tweet"];
-        var tweetUser=tweet["user"];
-        var element="<br><div style='border:solid 1px black'>"+tweetText+"<div>"+tweetUser+"</div>"+"</div><br>";
+    formatTweet: function (tweet) {
+        var tweetText = tweet["tweet"];
+        var tweetUser = tweet["user"];
+        var element = "<br><div style='border:solid 1px black'>" + tweetText + "<div>" + tweetUser + "</div>" + "</div><br>";
         return element;
     },
+    dateNDaysAgo: function (days) {
+
+        var date = new Date();
+        var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+        return last;
+    }
 }
