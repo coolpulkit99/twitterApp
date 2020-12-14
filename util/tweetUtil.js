@@ -4,8 +4,6 @@ module.exports = {
         var tweetText = tweetJson["text"];
         var screenName = userInfo["screen_name"];
 
-        // var matches = string.match(/\bhttps?:\/\/\S+/gi);
-
         return {
             tweet: tweetText,
             user: screenName
@@ -23,9 +21,7 @@ module.exports = {
     extractUrl: function (tweetData) {
         var tweetText = tweetData["entities"]["urls"];
         var matches = tweetText.map(a => a["expanded_url"]);
-        // var tweetText = tweetData["tweet"];
-        // var matches = tweetText.match(/\bhttps?:\/\/\S+/gi);
-        return matches;//.map(this.extractDomain);
+        return matches;
     },
 
     extractUser: function (tweetData) {
@@ -33,9 +29,7 @@ module.exports = {
         return tweetData["user"];
     },
     extractDomain: function url_domain(data) {
-        // var a = document.createElement('a');
-        // a.href = data;
-        // return a.hostname;
+
         return (new URL(data)).hostname;
     },
     showMax: function (a) {

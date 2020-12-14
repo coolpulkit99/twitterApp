@@ -1,4 +1,7 @@
-{ "scripts": {"start": "node server.js"},
+{
+  "scripts": {
+    "start": "node server.js"
+  },
   "name": "express-4.x-twitter-example",
   "version": "0.0.0",
   "description": "Express 4.x app using Passport for authentication with Twitter.",
@@ -24,6 +27,7 @@
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
+    "mongoose": "^5.11.7",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-twitter": "^1.0.4",
